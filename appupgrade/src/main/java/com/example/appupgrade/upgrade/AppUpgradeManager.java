@@ -517,7 +517,8 @@ public class AppUpgradeManager implements AppUpgrade, VersionInfoDialogListener 
         // 在24及其以上版本，解决崩溃异常：
         // android.os.FileUriExposedException: file:///storage/emulated/0/xxx exposed beyond app through Intent.getData()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            apkFileUri = FileProvider.getUriForFile(appContext, BuildConfig.APPLICATION_ID + ".provider", apkFile);
+//            apkFileUri = FileProvider.getUriForFile(appContext, BuildConfig.APPLICATION_ID + ".provider", apkFile);
+            apkFileUri = FileProvider.getUriForFile(appContext, appContext.getPackageName()+ ".provider", apkFile);
         } else {
             apkFileUri = Uri.fromFile(apkFile);
         }
