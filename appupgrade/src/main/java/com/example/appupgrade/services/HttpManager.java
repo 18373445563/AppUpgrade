@@ -6,9 +6,9 @@ import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.Nullable;
 
-import com.jemlin.demo.upgrade.BuildConfig;
-import com.jemlin.demo.upgrade.config.Constants;
-import com.jemlin.demo.upgrade.helper.NetworkHelper;
+import com.example.appupgrade.BuildConfig;
+import com.example.appupgrade.config.Constants;
+import com.example.appupgrade.helper.NetworkHelper;
 
 import org.json.JSONException;
 import org.json.JSONObject;

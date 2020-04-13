@@ -5,9 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.jemlin.demo.upgrade.R;
-import com.jemlin.demo.upgrade.controllers.base.BaseActivity;
-import com.jemlin.demo.upgrade.event.UpgradeActivityFinishEvent;
+import com.example.appupgrade.R;
+import com.example.appupgrade.controllers.base.BaseActivity;
+import com.example.appupgrade.event.UpgradeActivityFinishEvent;
 import com.jude.swipbackhelper.SwipeBackHelper;
 
 import org.greenrobot.eventbus.EventBus;

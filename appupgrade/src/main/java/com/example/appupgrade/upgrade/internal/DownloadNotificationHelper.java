@@ -12,7 +12,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.jemlin.demo.upgrade.R;
+import com.example.appupgrade.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

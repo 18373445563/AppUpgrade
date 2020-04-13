@@ -9,7 +9,7 @@ import android.text.TextUtils;
 import android.view.Window;
 import android.widget.TextView;
 
-import com.jemlin.demo.upgrade.R;
+import com.example.appupgrade.R;
 
 
 public class CustomProgressDialog extends ProgressDialog {

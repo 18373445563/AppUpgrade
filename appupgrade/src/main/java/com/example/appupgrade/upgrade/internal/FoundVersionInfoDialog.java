@@ -10,7 +10,7 @@ import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.Theme;
-import com.jemlin.demo.upgrade.event.UpgradeActivityFinishEvent;
+import com.example.appupgrade.event.UpgradeActivityFinishEvent;
 
 import org.greenrobot.eventbus.EventBus;
 

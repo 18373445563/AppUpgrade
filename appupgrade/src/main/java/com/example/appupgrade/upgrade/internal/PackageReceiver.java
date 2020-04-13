@@ -32,7 +32,7 @@ public class PackageReceiver extends BroadcastReceiver {
         String packageName = intent.getDataString();
         Timber.d("[PackageReceiver] packageName:" + packageName);
         String apkName = UpgradeHelper.downloadTempName(context.getPackageName());
-        if (!TextUtils.isEmpty(packageName) && (apkName.equals(packageName) || packageName.equals("com.jemlin.demo.upgrade"))) {
+        if (!TextUtils.isEmpty(packageName) && (apkName.equals(packageName) || packageName.equals("com.example.appupgrade."))) {
             String dirPath = Environment.getExternalStoragePublicDirectory(
                     Environment.DIRECTORY_DOWNLOADS).getAbsolutePath();
             dirPath = dirPath.endsWith(File.separator) ? dirPath : dirPath

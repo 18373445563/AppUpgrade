@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.jemlin.demo.upgrade.R;
+import com.example.appupgrade.R;
 
 import java.lang.ref.SoftReference;
 

@@ -2,7 +2,7 @@ package com.example.appupgrade.upgrade.internal;
 
 import android.content.Context;
 
-import com.jemlin.demo.upgrade.helper.SPHelper;
+import com.example.appupgrade.helper.SPHelper;
 
 import timber.log.Timber;
 
