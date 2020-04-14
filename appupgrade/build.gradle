@@ -42,14 +42,13 @@ android {
 }
 
 dependencies {
-//    implementation fileTree(dir: 'libs', include: ['*.jar'])
-//
-//    implementation 'com.android.support:appcompat-v7:27.1.1'
-//    testImplementation 'junit:junit:4.12'
-//    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-//    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    compileOnly 'com.android.support:appcompat-v7:27.1.1'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     //EventBus事件发布订阅，https://github.com/greenrobot/EventBus
-    compile 'org.greenrobot:eventbus:3.0.0'
+    compileOnly 'org.greenrobot:eventbus:3.0.0'
     annotationProcessor 'org.greenrobot:eventbus-annotation-processor:3.0.1'
 
     // butterknife: https://github.com/JakeWharton/butterknife
@@ -57,13 +56,13 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
     // gson: https://github.com/google/gson
-    compile 'com.google.code.gson:gson:2.8.1'
+    compileOnly 'com.google.code.gson:gson:2.8.1'
 
     // okhttp3: https://github.com/square/okhttp
-    compile 'com.squareup.okhttp3:okhttp:3.9.0'
+    compileOnly 'com.squareup.okhttp3:okhttp:3.9.0'
 
     // timber: https://github.com/JakeWharton/timber
-    compile 'com.jakewharton.timber:timber:4.5.1'
+    compileOnly 'com.jakewharton.timber:timber:4.5.1'
 
     // material-dialogs: https://github.com/afollestad/material-dialogs
     compile 'com.afollestad.material-dialogs:core:0.9.4.5'
