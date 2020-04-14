@@ -1,11 +1,13 @@
 package com.example.appupgrade.upgrade.internal;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.SystemClock;
 import android.support.v4.app.NotificationCompat;
 import android.view.LayoutInflater;
@@ -30,32 +32,67 @@ public final class DownloadNotificationHelper {
 
     public static void sendDefaultNotice(Context context, String title, String desc, int progress) {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
-        builder.setOngoing(false)
-                .setPriority(NotificationCompat.PRIORITY_MAX)
-                .setContentTitle(title)
-                .setSmallIcon(R.mipmap.ic_launcher);
+        String id = "my_channel_01";
+        Notification notification = null;
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+        {
+            NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+            NotificationChannel mChannel = new NotificationChannel(id, "channel_01", NotificationManager.IMPORTANCE_LOW);
+            notificationManager.createNotificationChannel(mChannel);
+            Notification.Builder temple = new Notification.Builder(context)
+                    .setChannelId(id)
+                    .setContentTitle(title)
+                    .setSmallIcon(R.mipmap.ic_launcher);
 
-        PendingIntent pendingIntent = null;
-        if (progress >= 100) {
-            int requestCode = (int) SystemClock.uptimeMillis();
-            Intent intent = new Intent(ACTION_CLICK_NOTIFICATION);
-            intent.putExtra(NOTICE_ID_KEY, NOTICE_DOWNLOAD_ID);
-            pendingIntent = PendingIntent.getBroadcast(context, requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent pendingIntent = null;
+            if (progress >= 100) {
+                int requestCode = (int) SystemClock.uptimeMillis();
+                Intent intent = new Intent(ACTION_CLICK_NOTIFICATION);
+                intent.putExtra(NOTICE_ID_KEY, NOTICE_DOWNLOAD_ID);
+                pendingIntent = PendingIntent.getBroadcast(context, requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-            builder.setContentText(context.getString(R.string.downloadFinish))
-                    .setProgress(0, 0, false);
-        } else {
-            builder.setContentText(desc)
-                    .setProgress(100, progress, false);
+                temple.setContentText(context.getString(R.string.downloadFinish))
+                        .setProgress(0, 0, false);
+            } else {
+                temple.setContentText(desc)
+                        .setProgress(100, progress, false);
+            }
+
+            if (pendingIntent != null) {
+                temple.setContentIntent(pendingIntent);
+            }
+
+            notification=temple.build();
+            notificationManager.notify(NOTICE_DOWNLOAD_ID, notification);
+        }
+        else{
+            builder.setOngoing(false)
+                    .setPriority(NotificationCompat.PRIORITY_MAX)
+                    .setContentTitle(title)
+                    .setSmallIcon(R.mipmap.ic_launcher);
+
+            PendingIntent pendingIntent = null;
+            if (progress >= 100) {
+                int requestCode = (int) SystemClock.uptimeMillis();
+                Intent intent = new Intent(ACTION_CLICK_NOTIFICATION);
+                intent.putExtra(NOTICE_ID_KEY, NOTICE_DOWNLOAD_ID);
+                pendingIntent = PendingIntent.getBroadcast(context, requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                builder.setContentText(context.getString(R.string.downloadFinish))
+                        .setProgress(0, 0, false);
+            } else {
+                builder.setContentText(desc)
+                        .setProgress(100, progress, false);
+            }
+
+            if (pendingIntent != null) {
+                builder.setContentIntent(pendingIntent);
+            }
+            Notification notify= builder.build();
+            NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+            manager.notify(NOTICE_DOWNLOAD_ID, notify);
         }
 
-        if (pendingIntent != null) {
-            builder.setContentIntent(pendingIntent);
-        }
-
-        Notification notification = builder.build();
-        NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        manager.notify(NOTICE_DOWNLOAD_ID, notification);
     }
 
     public static void cancelNotification(Context context) {
