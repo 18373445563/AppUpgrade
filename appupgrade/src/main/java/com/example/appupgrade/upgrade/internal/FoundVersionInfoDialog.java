@@ -45,10 +45,10 @@ public class FoundVersionInfoDialog {
                         .theme(Theme.LIGHT)
                         .titleGravity(GravityEnum.CENTER)
                         .content(!TextUtils.isEmpty(version.getVersionDesc()) ? version.getVersionDesc() : "")
-                        .negativeText("立即更新")
+                        .positiveText("立即更新")
                         .neutralText("稍后提醒")
                         .buttonsGravity(GravityEnum.CENTER)
-                        .onNegative(new MaterialDialog.SingleButtonCallback() {
+                        .onPositive(new MaterialDialog.SingleButtonCallback() {
                             @Override
                             public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                                 dialog.dismiss();
@@ -74,9 +74,9 @@ public class FoundVersionInfoDialog {
                         .theme(Theme.LIGHT)
                         .titleGravity(GravityEnum.CENTER)
                         .content(!TextUtils.isEmpty(version.getVersionDesc()) ? "本次为强制更新，若点击返回会导致自动退出app\n"+version.getVersionDesc() : "")
-                        .negativeText("立即更新")
+                        .positiveText("立即更新")
                         .buttonsGravity(GravityEnum.CENTER)
-                        .onNegative(new MaterialDialog.SingleButtonCallback() {
+                        .onPositive(new MaterialDialog.SingleButtonCallback() {
                             @Override
                             public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                                 dialog.dismiss();
