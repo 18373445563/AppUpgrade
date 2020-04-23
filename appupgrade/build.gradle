@@ -61,8 +61,8 @@ dependencies {
     provided  'com.jakewharton.timber:timber:4.5.1'
 
     // material-dialogs: https://github.com/afollestad/material-dialogs
-    implementation  'com.afollestad.material-dialogs:core:0.9.4.5'
+    provided  'com.afollestad.material-dialogs:core:0.9.4.5'
 
     // 右滑返回 swipebackhelper: https://github.com/Jude95/SwipeBackHelper
-    implementation  'com.jude:swipebackhelper:3.1.2'
+    provided  'com.jude:swipebackhelper:3.1.2'
 }
