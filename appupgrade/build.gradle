@@ -63,6 +63,7 @@ dependencies {
     // material-dialogs: https://github.com/afollestad/material-dialogs
     provided  'com.afollestad.material-dialogs:core:0.9.4.5'
 
+
     // 右滑返回 swipebackhelper: https://github.com/Jude95/SwipeBackHelper
     provided  'com.jude:swipebackhelper:3.1.2'
 }
