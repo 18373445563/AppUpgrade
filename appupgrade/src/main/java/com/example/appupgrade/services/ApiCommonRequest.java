@@ -2,9 +2,12 @@ package com.example.appupgrade.services;
 
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
 import org.json.JSONObject;
+
+import java.util.Locale;
 
 public final class ApiCommonRequest {
 
