@@ -15,7 +15,7 @@ public class VersionInfo {
     /**
      * 例如2.0.1。安卓传versionName，iOS传Version
      */
-    private String version;
+    private String versionName;
 
     /**
      * 下载链接
@@ -30,7 +30,7 @@ public class VersionInfo {
     /**
      * 是否强制升级
      */
-    private boolean isMustUpgrade = false;
+    private int isMustUpgrade = 0;
     /**
      * versionDesc : 版本说明。服务端注意，换行使用\n
      */
@@ -47,9 +47,9 @@ public class VersionInfo {
     }
 
     public VersionInfo(int versionCode, String versionName,
-                       String versionDesc, String downloadUrl, String md5, boolean isMustUpgrade) {
+                       String versionDesc, String downloadUrl, String md5, int isMustUpgrade) {
         this.versionCode = versionCode;
-        this.version = versionName;
+        this.versionName = versionName;
         this.versionDesc = versionDesc;
         this.downloadUrl = downloadUrl;
         this.md5 = md5;
@@ -61,7 +61,7 @@ public class VersionInfo {
     public String toString() {
         StringBuilder builder = new StringBuilder(":: VERSION -> ");
         builder.append("VersionCode:").append(versionCode).append(", ");
-        builder.append("VersionName:").append(version).append(", ");
+        builder.append("VersionName:").append(versionName).append(", ");
         builder.append("versionDesc:").append(versionDesc).append(", ");
         builder.append("downloadUrl:").append(downloadUrl).append(", ");
         builder.append("md5:").append(md5).append(", ");
@@ -78,11 +78,11 @@ public class VersionInfo {
     }
 
     public String getVersion() {
-        return version;
+        return versionName;
     }
 
     public void setVersion(String version) {
-        this.version = version;
+        this.versionName = version;
     }
 
     public String getDownloadUrl() {
@@ -101,11 +101,11 @@ public class VersionInfo {
         this.md5 = md5;
     }
 
-    public boolean isMustUpgrade() {
+    public int isMustUpgrade() {
         return isMustUpgrade;
     }
 
-    public void setMustUpgrade(boolean mustUpgrade) {
+    public void setMustUpgrade(int mustUpgrade) {
         isMustUpgrade = mustUpgrade;
     }
 

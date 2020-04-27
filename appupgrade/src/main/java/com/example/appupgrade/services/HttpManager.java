@@ -168,12 +168,20 @@ public class HttpManager {
 
     public void request(Context context, String uri, HttpMethod method, JSONObject params, HttpServiceRequestCallBack callback) {
         String requestFullPath;
+        String appName,language,versionCode;
         if (BuildConfig.DEBUG) {
             requestFullPath = getBaseUrl(Server.DEBUG);
         } else {
             requestFullPath = getBaseUrl(Server.RELEASE);
         }
-        requestFullPath = requestFullPath + uri;
+        try {
+            appName=params.getString("appName").toString();
+            language=params.getString("language").toString();
+            versionCode=params.getString("language").toString();
+            requestFullPath = requestFullPath + uri+"?appName="+appName+"&language="+language+"&versionCode="+versionCode;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         long now = new Date().getTime();
         String requestId = String.format(Locale.getDefault(), "%d%d", now, new Random().nextInt(1000));
@@ -201,11 +209,7 @@ public class HttpManager {
                 requestBuilder.url(uriBuilder.build().toString());
             }
         } else {
-            if (params != null) {
-                requestBody = RequestBody.create(JSON, params.toString());
-            } else {
-                requestBody = RequestBody.create(JSON, "");
-            }
+            requestBody = RequestBody.create(JSON, "");
             requestBuilder.method(method.name, requestBody);
         }
 

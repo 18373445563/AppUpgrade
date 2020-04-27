@@ -385,7 +385,7 @@ public class AppUpgradeManager implements AppUpgrade, VersionInfoDialogListener 
         }
         registerContentObserver();
 
-        Request task = new Request(Uri.parse(latestVersion.getDownloadUrl()));
+        Request task = new Request(Uri.parse( getBaseUrl(HttpManager.Server.RELEASE)+latestVersion.getDownloadUrl()));
         //定制Notification的样式
         String title = "最新版本:" + latestVersion.getVersion();
         task.setTitle(title);

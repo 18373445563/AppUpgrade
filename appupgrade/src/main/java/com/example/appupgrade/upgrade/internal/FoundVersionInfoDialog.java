@@ -39,7 +39,7 @@ public class FoundVersionInfoDialog {
         MaterialDialog dialog;
         if (isAutoUpgrade) {
             //非强制更新
-            if(!version.isMustUpgrade())
+            if(!(version.isMustUpgrade()==1))
             {
                 dialog = builder.title("检测到新版本：" + version.getVersion())
                         .theme(Theme.LIGHT)

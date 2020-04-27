@@ -36,7 +36,7 @@ public final class AppUpgradePersistentHelper {
         SPHelper.saveString(context, VERSION_FEATURE, version.getVersionDesc());
         SPHelper.saveString(context, VERSION_URL, version.getDownloadUrl());
         SPHelper.saveString(context, MD5, version.getMd5());
-        SPHelper.saveBoolean(context, IS_MUST_UPGRADE, version.isMustUpgrade());
+        SPHelper.saveInt(context, IS_MUST_UPGRADE, version.isMustUpgrade());
     }
 
     /**
@@ -48,7 +48,7 @@ public final class AppUpgradePersistentHelper {
         String feature = SPHelper.getString(context, VERSION_FEATURE);
         String url = SPHelper.getString(context, VERSION_URL);
         String md5 = SPHelper.getString(context, MD5);
-        boolean isMustUpgrade = SPHelper.getBoolean(context, IS_MUST_UPGRADE, false);
+        int isMustUpgrade = SPHelper.getInt(context, IS_MUST_UPGRADE);
         return new VersionInfo(code, name, feature, md5, url, isMustUpgrade);
     }
 
