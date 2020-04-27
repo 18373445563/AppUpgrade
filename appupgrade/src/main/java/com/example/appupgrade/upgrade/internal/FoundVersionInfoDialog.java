@@ -128,7 +128,7 @@ public class FoundVersionInfoDialog {
             public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_BACK) {
                     //EventBus.getDefault().post(new UpgradeActivityFinishEvent());
-                    if(version.isMustUpgrade())
+                    if(version.isMustUpgrade()==1)
                     {
                      android.os.Process.killProcess(android.os.Process.myPid());   //获取PID
                      System.exit(0);   //常规java、c#的标准退出法，返回值为0代表正常退出

@@ -33,6 +33,7 @@ import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.Theme;
+import com.example.appupgrade.config.Constants;
 import com.google.gson.Gson;
 import com.example.appupgrade.BuildConfig;
 import com.example.appupgrade.R;
@@ -385,7 +386,7 @@ public class AppUpgradeManager implements AppUpgrade, VersionInfoDialogListener 
         }
         registerContentObserver();
 
-        Request task = new Request(Uri.parse( getBaseUrl(HttpManager.Server.RELEASE)+latestVersion.getDownloadUrl()));
+        Request task = new Request(Uri.parse(getBaseUrl(HttpManager.Server.RELEASE)+latestVersion.getDownloadUrl()));
         //定制Notification的样式
         String title = "最新版本:" + latestVersion.getVersion();
         task.setTitle(title);
@@ -620,6 +621,19 @@ public class AppUpgradeManager implements AppUpgrade, VersionInfoDialogListener 
         }
     }
 
+
+    private String getBaseUrl(HttpManager.Server server) {
+        switch (server) {
+            case DEBUG:
+                return Constants.App.API_DOMAIN_DEBUG;
+
+            case RELEASE:
+                return Constants.App.API_DOMAIN_RELEASE;
+
+            default:
+                return Constants.App.API_DOMAIN_RELEASE;
+        }
+    }
 
     /**
      * 下载完成的广播
