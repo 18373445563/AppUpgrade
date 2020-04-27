@@ -428,46 +428,50 @@ public class AppUpgradeManager implements AppUpgrade, VersionInfoDialogListener 
             ToastHelper.showToast("无法连接网络，请您检查后重试");
         } else {
             // 非wifi网络下，再次提示用户是否继续
-            MaterialDialog.Builder builder = new MaterialDialog.Builder(activity);
-            final MaterialDialog dialog = builder.title("流量提醒")
-                    .theme(Theme.LIGHT)
-                    .titleGravity(GravityEnum.CENTER)
-                    .content("您当前使用的不是wifi，更新会产生一些网络流量，是否继续下载？")
-                    .positiveText("确定")
-                    .negativeText("取消")
-                    .onPositive(new MaterialDialog.SingleButtonCallback() {
-                        @Override
-                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                            dialog.dismiss();
-                            EventBus.getDefault().post(new UpgradeActivityFinishEvent());
-                            downloadApk();
-                        }
-                    })
-                    .onNegative(new MaterialDialog.SingleButtonCallback() {
-                        @Override
-                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                            dialog.dismiss();
-                            EventBus.getDefault().post(new UpgradeActivityFinishEvent());
-                        }
-                    })
-                    .build();
-            dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                @Override
-                public void onCancel(DialogInterface dialog) {
-                    EventBus.getDefault().post(new UpgradeActivityFinishEvent());
-                }
-            });
-            dialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
-                @Override
-                public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                    if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if(latestVersion.isMustUpgrade()!=1)
+            {
+                MaterialDialog.Builder builder = new MaterialDialog.Builder(activity);
+                final MaterialDialog dialog = builder.title("流量提醒")
+                        .theme(Theme.LIGHT)
+                        .titleGravity(GravityEnum.CENTER)
+                        .content("您当前使用的不是wifi，更新会产生一些网络流量，是否继续下载？")
+                        .positiveText("确定")
+                        .negativeText("取消")
+                        .onPositive(new MaterialDialog.SingleButtonCallback() {
+                            @Override
+                            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                dialog.dismiss();
+                                EventBus.getDefault().post(new UpgradeActivityFinishEvent());
+                                downloadApk();
+                            }
+                        })
+                        .onNegative(new MaterialDialog.SingleButtonCallback() {
+                            @Override
+                            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                dialog.dismiss();
+                                EventBus.getDefault().post(new UpgradeActivityFinishEvent());
+                            }
+                        })
+                        .build();
+                dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
                         EventBus.getDefault().post(new UpgradeActivityFinishEvent());
                     }
-                    return false;
-                }
-            });
-            dialog.show();
-        }
+                });
+                dialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+                    @Override
+                    public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                        if (keyCode == KeyEvent.KEYCODE_BACK) {
+                            EventBus.getDefault().post(new UpgradeActivityFinishEvent());
+                        }
+                        return false;
+                    }
+                });
+                dialog.show();
+            }
+            }
+
     }
 
     @Override
